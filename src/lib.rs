@@ -7,7 +7,7 @@
 //! part of the application. Most linux touch drivers provide an events interface, e.g.
 //! `/etc/input/event0`, from which events can be read.
 //!
-//! This is a simple wrapper around the [`evdev` crate](https://crates.io/crates/evdev) to convert
+//! This is a wrapper around the [`evdev` crate](https://crates.io/crates/evdev) to convert
 //! the input events into WindowEvent structs which can be passed to slint via the
 //! `dispatch_event()` method on a MinimalSoftwareWindow.
 //!
@@ -19,10 +19,12 @@
 //!
 //! Can be used as a blocking call via [`fetch_events()`](SlintEventsWrapper::fetch_events), or via
 //! async stream by enabling the `tokio` feature and using
-//! [`into_event_stream()`](SlintEventsWrapper::into_event_stream) to create an [`EventStream`](tokio::EventStream).
+//! [`into_event_stream()`](SlintEventsWrapper::into_event_stream) to create an
+//! [`EventStream`](tokio::EventStream).
 //!
 #![warn(missing_docs)]
-#[cfg_attr(docsrs, doc(cfg(feature = "tokio")))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
+
 use std::path::Path;
 
 use evdev::{AbsoluteAxisCode, EventSummary, FetchEventsSynced, KeyCode};
@@ -156,6 +158,7 @@ impl SlintEventsWrapper {
     ///
     /// Requires the `tokio` feature
     #[cfg(feature = "tokio")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "tokio")))]
     pub fn into_event_stream(self) -> std::io::Result<tokio::EventStream> {
         Ok(tokio::EventStream {
             evdev_stream: self.device.into_event_stream()?,
@@ -189,6 +192,7 @@ impl Iterator for SlintEventsIterator<'_> {
 }
 
 #[cfg(feature = "tokio")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tokio")))]
 mod tokio {
     use super::*;
     /// A async stream of input events
