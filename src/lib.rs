@@ -154,7 +154,7 @@ impl SlintEventsWrapper {
         }
     }
 
-    /// Convert the wrapper into an [`EventStream`] for async reading
+    /// Convert the wrapper into an [`EventStream`](tokio::EventStream) for async reading
     ///
     /// Requires the `tokio` feature
     #[cfg(feature = "tokio")]
@@ -193,7 +193,8 @@ impl Iterator for SlintEventsIterator<'_> {
 
 #[cfg(feature = "tokio")]
 #[cfg_attr(docsrs, doc(cfg(feature = "tokio")))]
-mod tokio {
+/// Tokio support
+pub mod tokio {
     use super::*;
     /// A async stream of input events
     pub struct EventStream {
