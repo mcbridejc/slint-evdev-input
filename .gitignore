@@ -1,2 +1,5 @@
+.stfolder
+.stignore
+
 Cargo.lock
 target
