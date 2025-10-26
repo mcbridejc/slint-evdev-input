@@ -1,0 +1,18 @@
+[package]
+name = "slint-evdev-input"
+version = "0.0.1"
+edition = "2024"
+description = "Convert evdev input events into slint WindowEvents"
+repository = "https://github.com/mcbridejc/slint-evdev-input"
+
+[dependencies]
+evdev = { version = "0.13.2", features = ["tokio"] }
+slint = { version = "1.13.1", default-features = false, features = ["std", "compat-1-2"] }
+tokio = { version = "1.47.1", optional = true }
+
+[dev-dependencies]
+tokio = { version = "1.47.1", features = ["macros", "rt"] }
+
+[features]
+default = []
+tokio = ["evdev/tokio", "dep:tokio"]
