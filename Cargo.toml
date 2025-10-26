@@ -2,6 +2,7 @@
 name = "slint-evdev-input"
 version = "0.0.1"
 edition = "2024"
+license = "MIT"
 description = "Convert evdev input events into slint WindowEvents"
 repository = "https://github.com/mcbridejc/slint-evdev-input"
 
