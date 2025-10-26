@@ -22,9 +22,7 @@ jobs:
       run: cargo clippy && cargo clippy --all-features
     - name: Build
       run: cargo build --verbose --all-features
-    - name: Run tests
-      run: cargo test --verbose
     - name: Doc
       run: cargo doc --all-features
-    - name: Run device tests
+    - name: Cargo test
       run: sudo -E env "PATH=$PATH" cargo test --tests --features tokio
